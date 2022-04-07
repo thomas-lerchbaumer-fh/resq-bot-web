@@ -21,12 +21,12 @@ npm run clientinstall
 this will install required node_modules/libs for the backend/node server
 npm i
 
-#Start the Project
+# Start the Project
 To start frontend + backend enter:
 npm run dev
 
 
-#Happy coding :)
+# Happy coding :)
 
 
 
