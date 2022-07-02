@@ -85,7 +85,7 @@ function getGyro(){
 
 function App() {
   const sendLeftMotorControl = (event, newValue) => {
-    //console.log(newValue);
+    console.log(newValue);
     const requestOptions = {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
