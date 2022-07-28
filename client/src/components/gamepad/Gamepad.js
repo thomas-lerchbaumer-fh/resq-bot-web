@@ -5,6 +5,9 @@ import { Grid } from "@mui/material";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
+import InfoIcon from "@mui/icons-material/Info";
+import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
 
 const buttonLabels = [
   "A",
@@ -34,6 +37,11 @@ const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
   height: 100,
   textAlign: "center",
+  justifyItems: "center",
+  alignItems: "center",
+  alignContent: "center",
+  display: "flex",
+  justifyContent: "center",
   color: theme.palette.text.secondary,
 }));
 
@@ -58,11 +66,20 @@ const Gamepad = () => {
           sx={{ height: 300 }}
           justifyContent="center"
           alignContent="center"
+          direction="column"
+          style={{
+            justifyContent: "center",
+          }}
         >
           <Item>
             <Typography variant="h6">
-              Currently no controller is connected
+              Currently no controller is connected{" "}
             </Typography>
+            <Tooltip title="Get Help">
+              <IconButton edge="end">
+                <InfoIcon fontSize="small" tooltip="Get help"></InfoIcon>
+              </IconButton>
+            </Tooltip>
           </Item>
         </Grid>
         {/* <Grid item xs={5} lg={6}>

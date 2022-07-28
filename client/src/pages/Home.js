@@ -26,7 +26,7 @@ const Home = () => {
     <Fragment>
       <Container maxWidth="lg">
         <Box sx={{ flexGrow: 1, mt: 5 }}>
-          <Grid container justifyContent="center" spacing={2}>
+          <Grid container  spacing={2}>
             <Gamepad></Gamepad>
           </Grid>
         </Box>
