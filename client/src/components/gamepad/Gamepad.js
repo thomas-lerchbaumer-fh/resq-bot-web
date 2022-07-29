@@ -10,27 +10,13 @@ import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import VisualizePad from "./VisualizedPad";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
-const buttonLabels = [
-  "A",
-  "B",
-  "X",
-  "Y",
-  "L1",
-  "R1",
-  "L2",
-  "R2",
-  "Back",
-  "Start",
-  "L3",
-  "R3",
-  "UP",
-  "DOWN",
-  "LEFT",
-  "RIGHT",
-  "XBOX",
-];
+import MuiAlert from "@mui/material/Alert";
+import Snackbar from "@mui/material/Snackbar";
+import { Link } from "react-router-dom";
 
-const axesLabels = ["LX", "LY", "RX", "RY"];
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -48,6 +34,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const Gamepad = () => {
   const [gamepads, setGamepads] = useState([]);
+  const [connected, setConnected] = useState(false);
   useGamepads((_gamepads) => {
     setGamepads(Object.values(_gamepads));
   });
@@ -55,7 +42,18 @@ const Gamepad = () => {
 
   const gamepadIndx = 2;
 
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setConnected(false);
+  };
+
   //x button
+  window.addEventListener("gamepadconnected", function (e) {
+    console.log("exe");
+    setConnected(true);
+  });
 
   if (gamepads.length > 0) {
     //left analog stick
@@ -85,7 +83,6 @@ const Gamepad = () => {
     //left shoulder bottom (l2)
     if (gamepads[0].buttons[6].pressed === true)
       console.log(gamepads[0].buttons[6]);
-      
   }
 
   if (gamepads.length > 0) {
@@ -96,7 +93,8 @@ const Gamepad = () => {
       <Fragment>
         <Grid
           item
-          xs={6}
+          xs={12}
+          md={12}
           lg={6}
           sx={{ height: "100%" }}
           justifyContent="center"
@@ -109,11 +107,13 @@ const Gamepad = () => {
             <Typography variant="h6">
               Currently no controller is connected
             </Typography>
+            <Link to="/how-to">
             <Tooltip title="Get Help">
               <IconButton edge="end">
                 <InfoIcon fontSize="small" tooltip="Get help"></InfoIcon>
               </IconButton>
             </Tooltip>
+            </Link>
           </Item>
         </Grid>
       </Fragment>
@@ -136,6 +136,16 @@ const Gamepad = () => {
           </Item>
         </Grid>
       }
+      <Snackbar
+        open={connected}
+        autoHideDuration={4000}
+        onClose={handleClose}
+        severity="success"
+      >
+        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
+          Controller is connected now
+        </Alert>
+      </Snackbar>
     </Fragment>
   );
 };

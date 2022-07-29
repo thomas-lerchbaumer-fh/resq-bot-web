@@ -32,7 +32,8 @@ const Gyro3d = () => {
     <Fragment>
       <Grid
         item
-        xs={6}
+        xs={12}
+        md={12}
         lg={6}
         sx={{ height: "100%" }}
         justifyContent="center"
