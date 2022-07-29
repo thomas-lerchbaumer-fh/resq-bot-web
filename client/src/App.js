@@ -1,12 +1,14 @@
 //import logo from './logo.svg';
-import * as React from 'react';
+import * as React from "react";
 import "./App.css";
 import { createTheme } from "@mui/material/styles";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+
 
 //import mui components here
-import CssBaseline from '@mui/material/CssBaseline';
+import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@emotion/react";
-import Container from '@mui/material/Container';
+import Container from "@mui/material/Container";
 
 //import components here
 import Gamepad from "./components/gamepad/Gamepad";
@@ -14,7 +16,9 @@ import Gyro from "./components/gyro/Gyro";
 import TopMenu from "./components/layouts/TopMenu/TopMenu";
 
 //import pages here
-import Home from "./pages/Home"
+import Home from "./pages/Home";
+import HowTo from "./pages/HowTo"
+
 
 const theme = createTheme({
   palette: {
@@ -36,9 +40,13 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme}>
         <CssBaseline></CssBaseline>
+        <BrowserRouter>
         <TopMenu></TopMenu>
-
-        <Home></Home>
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/how-to" element={<HowTo />}></Route>
+          </Routes>
+        </BrowserRouter>
       </ThemeProvider>
     </div>
   );
