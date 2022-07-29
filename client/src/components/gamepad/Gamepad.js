@@ -8,7 +8,8 @@ import Typography from "@mui/material/Typography";
 import InfoIcon from "@mui/icons-material/Info";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
-
+import VisualizePad from "./VisualizedPad";
+import TaskAltIcon from "@mui/icons-material/TaskAlt";
 const buttonLabels = [
   "A",
   "B",
@@ -35,10 +36,10 @@ const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
   padding: theme.spacing(1),
-  height: 100,
   textAlign: "center",
   justifyItems: "center",
   alignItems: "center",
+  minHeight: 300,
   alignContent: "center",
   display: "flex",
   justifyContent: "center",
@@ -50,12 +51,46 @@ const Gamepad = () => {
   useGamepads((_gamepads) => {
     setGamepads(Object.values(_gamepads));
   });
+  const SENSITIVITY = 0.2;
+
+  const gamepadIndx = 2;
+
+  //x button
+
+  if (gamepads.length > 0) {
+    //left analog stick
+    if (
+      gamepads[0].axes[0] > SENSITIVITY || //left right
+      gamepads[0].axes[1] > SENSITIVITY || //up down
+      gamepads[0].axes[0] < SENSITIVITY * -1 || //left right
+      gamepads[0].axes[1] < SENSITIVITY * -1 //up down
+    ) {
+      console.log(gamepads[0].axes);
+    }
+
+    //right analog stick
+    if (
+      gamepads[0].axes[2] > SENSITIVITY || //left right
+      gamepads[0].axes[3] > SENSITIVITY || //up down
+      gamepads[0].axes[2] < SENSITIVITY * -1 || //left right
+      gamepads[0].axes[3] < SENSITIVITY * -1 //up down
+    ) {
+      console.log(gamepads[0].axes);
+    }
+
+    //right shoulder bottom (r2)
+    if (gamepads[0].buttons[7].pressed === true)
+      console.log(gamepads[0].buttons[7]);
+
+    //left shoulder bottom (l2)
+    if (gamepads[0].buttons[6].pressed === true)
+      console.log(gamepads[0].buttons[6]);
+      
+  }
 
   if (gamepads.length > 0) {
     const test = gamepads[0].buttons[4].pressed;
-    console.log(gamepads[0].axes[0]);
   }
-
   if (gamepads.length === 0)
     return (
       <Fragment>
@@ -63,17 +98,16 @@ const Gamepad = () => {
           item
           xs={6}
           lg={6}
-          sx={{ height: 300 }}
+          sx={{ height: "100%" }}
           justifyContent="center"
           alignContent="center"
-          direction="column"
           style={{
             justifyContent: "center",
           }}
         >
           <Item>
             <Typography variant="h6">
-              Currently no controller is connected{" "}
+              Currently no controller is connected
             </Typography>
             <Tooltip title="Get Help">
               <IconButton edge="end">
@@ -82,52 +116,26 @@ const Gamepad = () => {
             </Tooltip>
           </Item>
         </Grid>
-        {/* <Grid item xs={5} lg={6}>
-                <Item><Typography variant="h6">Currently you are not connected to the robot</Typography></Item>
-                </Grid> */}
       </Fragment>
     );
   return (
     <Fragment>
-      <Grid
-        item
-        xs={6}
-        lg={6}
-        sx={{ height: 300 }}
-        justifyContent="center"
-        alignContent="center"
-      >
-        <Item>
-          <div className="gamepad">
-            {gamepads.length &&
-              gamepads.map((pad) => {
-                return (
-                  <div>
-                    <div>ID: {pad.id}</div>
-                    {pad.buttons.map((button, index) => {
-                      return (
-                        <div>
-                          <div>
-                            <span>
-                              #{index + 1} {button.value}
-                            </span>
-                          </div>
-                        </div>
-                      );
-                    })}
-                    {pad.axes.map((axe, index) => {
-                      return (
-                        <div>
-                          #{index + 1}: {axe}
-                        </div>
-                      );
-                    })}
-                  </div>
-                );
-              })}
-          </div>
-        </Item>
-      </Grid>
+      {
+        <Grid item xs={6} lg={6} justifyContent="center" alignContent="center">
+          <Item
+            sx={{
+              flexDirection: "column",
+              justifyContent: "space-evenly",
+            }}
+          >
+            <Typography variant="h6" color="success.main">
+              Controller connected{" "}
+              <TaskAltIcon style={{ verticalAlign: "middle" }} />{" "}
+            </Typography>
+            <VisualizePad></VisualizePad>
+          </Item>
+        </Grid>
+      }
     </Fragment>
   );
 };
