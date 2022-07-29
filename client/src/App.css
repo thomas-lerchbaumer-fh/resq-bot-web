@@ -4,7 +4,10 @@
 
 .Test {
   box-sizing: content-box;
+}
 
+a {
+  text-decoration: none !important;
 }
 
 .App-logo {
