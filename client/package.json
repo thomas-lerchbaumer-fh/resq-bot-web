@@ -7,6 +7,9 @@
     "@emotion/styled": "^11.9.3",
     "@mui/icons-material": "^5.8.3",
     "@mui/material": "^5.9.2",
+    "@react-three/cannon": "^6.3.0",
+    "@react-three/drei": "^9.17.3",
+    "@react-three/fiber": "^8.2.2",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
@@ -18,6 +21,8 @@
     "react-responsive": "^9.0.0-beta.10",
     "react-scripts": "5.0.0",
     "resq": "file:..",
+    "socket.io-client": "^4.5.1",
+    "three": "^0.143.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
