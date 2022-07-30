@@ -40,19 +40,26 @@ io.sockets.on('connection', (socket) => {
 const EventEmitter = require('events').EventEmitter;
 const myEmitter = new EventEmitter();
 
-myEmitter.on('updateGyro', function (jsonobj) {
+myEmitter.on('updateGyro', function (data) {
     // do something here like broadcasting data to everyone
     // or you can check the connection with some logic and 
     // only send to relevant user
     connections.forEach(function(socket) {
-        socket.emit('gyroData', jsonobj);
+        socket.emit('gyroData', data);
+    });
+});
+
+myEmitter.on('updateSensorData', function (jsonobj) {
+    // do something here like broadcasting data to everyone
+    // or you can check the connection with some logic and 
+    // only send to relevant user
+    connections.forEach(function(socket) {
+        socket.emit('sensorData', jsonobj);
     });
 });
 
 app.post('/receiveGyro', function (req, res, next) {  
     const data = req.body
-    console.log(req.body);
-
     // emit your custom event with custom data
     myEmitter.emit('updateGyro', data);
 
@@ -61,12 +68,19 @@ app.post('/receiveGyro', function (req, res, next) {
 });
 
 
+app.post('/receiveSensorData',function (req,res,next){
+    const data = req.body
+    myEmitter.emit("updateSensorData", data);
+
+    res.send({ok:true});
+})
+
+
 app.get("/api", (req, res) => {
     res.json({ message: "Hello bois" });
 });
 
 app.put("/leftMotorControl", (req,res) => {
-    console.log(req.body.message);
     res.json({ message: "MotorControlsentToDevice"});
 });
 
@@ -76,5 +90,5 @@ app.listen(PORT, () => {
 
 
 server.listen(3002, () => {
-    console.log(`Server listening on ${PORT}`);
+    console.log(`Server listening on 3002`);
 });
