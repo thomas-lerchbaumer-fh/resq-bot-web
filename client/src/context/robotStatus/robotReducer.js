@@ -39,18 +39,21 @@ export default (state, action) => {
             return{
                 ...state,
                 speed: action.payload,
+                connection:true,
                 loading: false
             }
         case SET_TEMP:
             return{
                 ...state,
                 temperature: action.payload,
+                connection:true,
                 loading: false
             }
         case SET_BATTERY:
             return{
                 ...state,
                 batteryLevel: action.payload,
+                connection:true,
                 loading: false
             }
         default:
