@@ -30,7 +30,7 @@ function getGyro() {
     .then((res) => res.json())
     .then(
       (result) => {
-        console.log(result);
+
         document.getElementById("gyro").innerHTML = result["message"];
       },
       // Note: it's important to handle errors here
@@ -78,7 +78,7 @@ function getGyro() {
 }
 
 const Gyro = (event, newValue) => {
-  console.log(newValue);
+
   return (
     <Fragment>
       <Box sx={{ flexGrow: 1 }}>

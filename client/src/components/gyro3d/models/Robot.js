@@ -19,7 +19,7 @@ import { Physics } from "@react-three/cannon";
 
 const ENDPOINT = "http://localhost:3002";
 const socket = io.connect(ENDPOINT);
-THREE.DefaultLoadingManager.addHandler(/\.dds$/i, new DDSLoader());
+
 
 function Rover(props) {
   const { scene } = useGLTF("/Perseverance.glb");
@@ -40,7 +40,6 @@ const Robot = () => {
 
     useEffect(() => {
         socket.on("gyroData", (data) => {
-          console.log(data);
           const {x,y,z} = data[0];
           setRotation([x,y,z])
         });

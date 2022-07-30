@@ -14,7 +14,10 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import RobotInfoPopover from "../../robotInfos/RobotInfoPopover";
 import { Routes, Route, Link } from "react-router-dom";
+import Popover from "@mui/material/Popover";
+import SmartToyIcon from '@mui/icons-material/SmartToy';
 
 const pages = [
   {
@@ -50,6 +53,18 @@ const TopMenu = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const [anchorEl, setAnchorEl] = useState(null);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popover" : undefined;
 
   return (
     <AppBar position="static">
@@ -138,16 +153,52 @@ const TopMenu = () => {
                   <Button
                     key={page.name}
                     onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: "white", display: "block" , ':hover': {
-                      bgcolor: '#333', // theme.palette.primary.main
-                      color: 'white',
-                    },}}
+                    sx={{
+                      my: 2,
+                      color: "white",
+                      display: "block",
+                      ":hover": {
+                        bgcolor: "#333", // theme.palette.primary.main
+                        color: "white",
+                      },
+                    }}
                   >
                     {page.name}
                   </Button>
                 </Link>
               );
             })}
+          </Box>
+
+          <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Get device information">
+              <IconButton
+                aria-describedby={id}
+                variant="contained"
+                onClick={handleClick}
+                sx={{ p: 0 , color:"orange"}} 
+              >
+                <Avatar  style={{background:"white"}} color="#181818">
+               <SmartToyIcon color="secondary" />
+               </Avatar>
+              </IconButton>
+            </Tooltip>
+            <Popover
+              id={id}
+              open={open}
+              anchorEl={anchorEl}
+              onClose={handleClose}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+            >
+              <RobotInfoPopover></RobotInfoPopover>
+            </Popover>
           </Box>
 
           {/*       <Box sx={{ flexGrow: 0 }}>

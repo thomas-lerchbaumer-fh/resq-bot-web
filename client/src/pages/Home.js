@@ -13,6 +13,8 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Gyro from "../components/gyro/Gyro";
 import Gyro3d from "../components/gyro3d/Gyro3d";
+import RobotInfo from "../components/robotInfos/RobotInfo";
+
 
 const Home = () => {
   const Item = styled(Paper)(({ theme }) => ({
@@ -32,6 +34,7 @@ const Home = () => {
             <Gyro3d></Gyro3d>
           </Grid>
         </Box>
+        <RobotInfo></RobotInfo>
         <Gyro></Gyro>
       </Container>
     </Fragment>
