@@ -5,7 +5,7 @@ import ControllerSvg from './ControllerSvg';
 
  const VisualizePad =() => {
     const [gamepads, setGamepads] = useState({})
-    const gamepadIndx = 1;
+    const gamepadIndx = 0;
     useGamepads((gamepads) => setGamepads(gamepads))
     const calcDirectionVertical = (axe) => {
       // Up

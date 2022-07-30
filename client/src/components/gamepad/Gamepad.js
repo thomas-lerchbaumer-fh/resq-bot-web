@@ -32,6 +32,25 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
+
+const sendControls = (button, data) => {
+
+  const req = {
+    "button": button,
+      data
+  }
+  fetch('http://localhost:80/receiveControlInput', {  // Enter your IP address here
+  method: 'POST', 
+  mode: 'cors', 
+  headers: new Headers({'content-type': 'application/json',
+  'Accept':'application/json'}),
+  body: JSON.stringify(req) // body data type must match "Content-Type" header
+})
+
+
+}
+
+
 const Gamepad = () => {
   const [gamepads, setGamepads] = useState([]);
   const [connected, setConnected] = useState(false);
@@ -51,7 +70,7 @@ const Gamepad = () => {
 
   //x button
   window.addEventListener("gamepadconnected", function (e) {
-    console.log("exe");
+
     setConnected(true);
   });
 
@@ -63,7 +82,8 @@ const Gamepad = () => {
       gamepads[0].axes[0] < SENSITIVITY * -1 || //left right
       gamepads[0].axes[1] < SENSITIVITY * -1 //up down
     ) {
-      console.log(gamepads[0].axes);
+
+      sendControls("x", gamepads[0].axes);
     }
 
     //right analog stick
@@ -121,7 +141,7 @@ const Gamepad = () => {
   return (
     <Fragment>
       {
-        <Grid item xs={6} lg={6} justifyContent="center" alignContent="center">
+        <Grid item xs={12} lg={6} justifyContent="center" alignContent="center">
           <Item
             sx={{
               flexDirection: "column",

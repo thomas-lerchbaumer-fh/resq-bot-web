@@ -1,23 +1,27 @@
 //import logo from './logo.svg';
 import * as React from "react";
 import "./App.css";
-import { createTheme } from "@mui/material/styles";
+
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 
 //import mui components here
 import CssBaseline from "@mui/material/CssBaseline";
-import { ThemeProvider } from "@emotion/react";
 import Container from "@mui/material/Container";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 //import components here
 import Gamepad from "./components/gamepad/Gamepad";
 import Gyro from "./components/gyro/Gyro";
 import TopMenu from "./components/layouts/TopMenu/TopMenu";
 
+
 //import pages here
 import Home from "./pages/Home";
 import HowTo from "./pages/HowTo"
+
+//import sate below
+import RobotState from "./context/robotStatus/RobotState";
 
 
 const theme = createTheme({
@@ -40,6 +44,7 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme}>
         <CssBaseline></CssBaseline>
+        <RobotState>
         <BrowserRouter>
         <TopMenu></TopMenu>
           <Routes>
@@ -47,6 +52,8 @@ function App() {
             <Route path="/how-to" element={<HowTo />}></Route>
           </Routes>
         </BrowserRouter>
+        </RobotState>
+      
       </ThemeProvider>
     </div>
   );
