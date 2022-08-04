@@ -5,6 +5,7 @@ const session = require('express-session');
 const http = require("http");
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const MongoClient = require('mongodb').MongoClient;
 
 
 const {Server} = require("socket.io");
@@ -26,6 +27,10 @@ const io = new Server(server,{
         origin: "*"
     }
 })
+
+const mongodburi = "mongodb+srv://wahlfachprojektuser:iFRUEjduALJZhzIp@cluster0.awuaqj3.mongodb.net/?retryWrites=true&w=majority"
+
+
 
 const connections = [];
 io.sockets.on('connection', (socket) => {
@@ -62,7 +67,16 @@ app.post('/receiveGyro', function (req, res, next) {
     const data = req.body
     // emit your custom event with custom data
     myEmitter.emit('updateGyro', data);
-
+    MongoClient.connect(mongodburi, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db("WFP");
+        var myobj = { timestamp: Date.now() ,  "X-Axis": data[0].x, "Y-Axis": data[0].y,"Z-Axis": data[0].z };
+        dbo.collection("Gyrosensor").insertOne(myobj, function(err, res) {
+          if (err) throw err;
+          console.log("Gyrosensor to MongoDB");
+          db.close();
+        });
+      });
     // send the response to avoid connection timeout
     res.send({ok: true});
 });
@@ -71,6 +85,17 @@ app.post('/receiveGyro', function (req, res, next) {
 app.post('/receiveSensorData',function (req,res,next){
     const data = req.body
     myEmitter.emit("updateSensorData", data);
+
+    MongoClient.connect(mongodburi, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db("WFP");
+        var myobj = { timestamp: Date.now() ,  temperature: data.tmp, speed: data.speed, battery: data.battery };
+        dbo.collection("Sensordata").insertOne(myobj, function(err, res) {
+          if (err) throw err;
+          console.log("Sensordata to MongoDB");
+          db.close();
+        });
+      });
 
     res.send({ok:true});
 })
