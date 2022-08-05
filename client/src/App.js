@@ -18,7 +18,8 @@ import TopMenu from "./components/layouts/TopMenu/TopMenu";
 
 //import pages here
 import Home from "./pages/Home";
-import HowTo from "./pages/HowTo"
+import HowTo from "./pages/HowTo";
+import LoginPage from "./pages/LoginPage";
 
 //import sate below
 import RobotState from "./context/robotStatus/RobotState";
@@ -50,6 +51,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/how-to" element={<HowTo />}></Route>
+            <Route path="/loginpage" element={<LoginPage />}></Route>
           </Routes>
         </BrowserRouter>
         </RobotState>

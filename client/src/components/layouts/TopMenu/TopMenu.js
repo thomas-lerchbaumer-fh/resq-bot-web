@@ -169,6 +169,25 @@ const TopMenu = () => {
               );
             })}
           </Box>
+          
+                <Link key="/loginpage" to="/loginpage">
+                  <Button
+                    key="Login"
+                    onClick={handleCloseNavMenu}
+                    sx={{
+                      my: 2,
+                      color: "white",
+                      display: "block",
+                      ":hover": {
+                        bgcolor: "#333", // theme.palette.primary.main
+                        color: "white",
+                      },
+                    }}
+                  >
+                    Login
+                  </Button>
+                </Link>
+
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Get device information">
