@@ -17,6 +17,7 @@ const app = express();
 app.use(cors({
     origin: '*'
 }));
+app.use(session({secret: 'mySecret', saveUninitialized: true, resave: false}));
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -28,7 +29,7 @@ const io = new Server(server,{
     }
 })
 
-const mongodburi = "mongodb+srv://<Username>:<PW>@cluster0.awuaqj3.mongodb.net/?retryWrites=true&w=majority"
+const mongodburi = "mongodb+srv://wahlfachprojektuser:iFRUEjduALJZhzIp@cluster0.awuaqj3.mongodb.net/?retryWrites=true&w=majority"
 
 
 
@@ -107,6 +108,34 @@ app.get("/api", (req, res) => {
 
 app.put("/leftMotorControl", (req,res) => {
     res.json({ message: "MotorControlsentToDevice"});
+});
+
+app.post("/login", (req,res) => {
+    console.log(req.body.username);
+    MongoClient.connect(mongodburi, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db("WFP");
+        //Search for correct user and pw
+        var query = { name: req.body.username.toLowerCase(), password: req.body.password };
+        dbo.collection("Users").find(query).toArray(function(err, result) {
+            if (err) throw err;
+            //if user found
+            if (result.length != 0){
+                req.session.name = req.body.username;
+                res.json({ token: "yes"});
+            }
+            else {
+                res.json({ token: "wrong"});
+            }
+            db.close();
+        });
+      });
+});
+
+app.post("/logout", (req,res) => {
+    req.session.destroy();
+    res.json({ message: "Logout Successfull"});
+    
 });
 
 app.listen(PORT, () => {

@@ -33,11 +33,118 @@ const pages = [
     link: "/the-team",
   },
 ];
+
+const loggedinpages = [
+  {
+    name: "Control",
+    link: "/control",
+  },
+  {
+    name: "Data History",
+    link: "/history",
+  },
+];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
+
+function getToken() {
+  const tokenString = sessionStorage.getItem('token');
+  return JSON.parse(tokenString)
+}
+
+function LoginLogoutView(){
+  const t = getToken()
+  console.log(t)
+  if(getToken() === "yes"){
+    return (
+      <>
+                  <Button
+                    key="Logout"
+                    onClick={logout}
+                    sx={{
+                      my: 2,
+                      color: "white",
+                      display: "block",
+                      ":hover": {
+                        bgcolor: "#333", // theme.palette.primary.main
+                        color: "white",
+                      },
+                    }}
+                  >
+                    Logout
+                  </Button>
+      </>
+    );
+  }
+  else {
+    return (
+      <>
+    <Link key="/loginpage" to="/loginpage">
+    <Button
+      key="Login"
+      sx={{
+        my: 2,
+        color: "white",
+        display: "block",
+        ":hover": {
+          bgcolor: "#333", // theme.palette.primary.main
+          color: "white",
+        },
+      }}
+    >
+      Login
+    </Button>
+  </Link>
+  </>
+    );
+  }
+}
+
+function LoggedInViews(){
+  const t = getToken()
+  console.log(t)
+  if(getToken() === "yes"){
+    return (
+      <>
+            {loggedinpages.map(function (page) {
+              return (
+                <Link key={page.link} to={page.link}>
+                  <Button
+                    key={page.name}
+                    sx={{
+                      my: 2,
+                      color: "white",
+                      display: "block",
+                      ":hover": {
+                        bgcolor: "#333", // theme.palette.primary.main
+                        color: "white",
+                      },
+                    }}
+                  >
+                    {page.name}
+                  </Button>
+                </Link>
+              );
+            })}     
+      </>
+    );
+  }
+}
+
+function logout() {
+  sessionStorage.removeItem('token');
+  fetch('http://10.0.0.94:3002/logout', {
+       method: 'POST',
+       headers: {
+           'Content-Type': 'application/json'
+       },
+   })
+}
 
 const TopMenu = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  
+
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -168,26 +275,13 @@ const TopMenu = () => {
                 </Link>
               );
             })}
+            <LoggedInViews />
           </Box>
           
-                <Link key="/loginpage" to="/loginpage">
-                  <Button
-                    key="Login"
-                    onClick={handleCloseNavMenu}
-                    sx={{
-                      my: 2,
-                      color: "white",
-                      display: "block",
-                      ":hover": {
-                        bgcolor: "#333", // theme.palette.primary.main
-                        color: "white",
-                      },
-                    }}
-                  >
-                    Login
-                  </Button>
-                </Link>
+          <LoginLogoutView />
 
+       
+          
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Get device information">
