@@ -46,89 +46,12 @@ const loggedinpages = [
 ];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
+
 function getToken() {
   const tokenString = sessionStorage.getItem('token');
   return JSON.parse(tokenString)
 }
 
-function LoginLogoutView(){
-  const t = getToken()
-  console.log(t)
-  if(getToken() === "yes"){
-    return (
-      <>
-                  <Button
-                    key="Logout"
-                    onClick={logout}
-                    sx={{
-                      my: 2,
-                      color: "white",
-                      display: "block",
-                      ":hover": {
-                        bgcolor: "#333", // theme.palette.primary.main
-                        color: "white",
-                      },
-                    }}
-                  >
-                    Logout
-                  </Button>
-      </>
-    );
-  }
-  else {
-    return (
-      <>
-    <Link key="/loginpage" to="/loginpage">
-    <Button
-      key="Login"
-      sx={{
-        my: 2,
-        color: "white",
-        display: "block",
-        ":hover": {
-          bgcolor: "#333", // theme.palette.primary.main
-          color: "white",
-        },
-      }}
-    >
-      Login
-    </Button>
-  </Link>
-  </>
-    );
-  }
-}
-
-function LoggedInViews(){
-  const t = getToken()
-  console.log(t)
-  if(getToken() === "yes"){
-    return (
-      <>
-            {loggedinpages.map(function (page) {
-              return (
-                <Link key={page.link} to={page.link}>
-                  <Button
-                    key={page.name}
-                    sx={{
-                      my: 2,
-                      color: "white",
-                      display: "block",
-                      ":hover": {
-                        bgcolor: "#333", // theme.palette.primary.main
-                        color: "white",
-                      },
-                    }}
-                  >
-                    {page.name}
-                  </Button>
-                </Link>
-              );
-            })}     
-      </>
-    );
-  }
-}
 
 function logout() {
   sessionStorage.removeItem('token');
@@ -138,6 +61,7 @@ function logout() {
            'Content-Type': 'application/json'
        },
    })
+   window.location.reload(false)
 }
 
 const TopMenu = () => {
@@ -173,7 +97,9 @@ const TopMenu = () => {
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
+  const isLoggedIn = true;
   return (
+    
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -234,8 +160,17 @@ const TopMenu = () => {
                   </Link>
                 );
               })}
-            </Menu>
-          </Box>
+              {getToken() === "yes" ? loggedinpages.map(function (page) {
+                return (
+                  <Link key={page.link} to={page.link}>
+                    <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                      <Typography textAlign="center">{page.name}</Typography>
+                    </MenuItem>
+                  </Link>
+                );
+              }) :""}
+             </Menu>
+           </Box>
           <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
@@ -275,10 +210,59 @@ const TopMenu = () => {
                 </Link>
               );
             })}
-            <LoggedInViews />
+            
+            {getToken() === "yes" ? loggedinpages.map(function (page) {
+              return (
+                <Link key={page.link} to={page.link}>
+                  <Button
+                    key={page.name}
+                    sx={{
+                      my: 2,
+                      color: "white",
+                      display: "block",
+                      ":hover": {
+                        bgcolor: "#333", // theme.palette.primary.main
+                        color: "white",
+                      },
+                    }}
+                  >
+                    {page.name}
+                  </Button>
+                </Link>
+              );
+            }) :""}
           </Box>
           
-          <LoginLogoutView />
+          {getToken() === "yes" ?  <Button
+                    key="Logout"
+                    onClick={logout}
+                    sx={{
+                      my: 2,
+                      color: "white",
+                      display: "block",
+                      ":hover": {
+                        bgcolor: "#333", // theme.palette.primary.main
+                        color: "white",
+                      },
+                    }}
+                  >
+                    Logout
+                  </Button> : <Link key="/loginpage" to="/loginpage">
+    <Button
+      key="Login"
+      sx={{
+        my: 2,
+        color: "white",
+        display: "block",
+        ":hover": {
+          bgcolor: "#333", // theme.palette.primary.main
+          color: "white",
+        },
+      }}
+    >
+      Login
+    </Button>
+  </Link> }
 
        
           

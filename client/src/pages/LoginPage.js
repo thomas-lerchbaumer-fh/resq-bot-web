@@ -37,6 +37,8 @@ import React, {
 }
 
   const LoginPage = () => {
+
+   
     {/*const [expanded, setExpanded] = React.useState(false);
   
     const handleChange = (panel) => (event, isExpanded) => {
@@ -59,6 +61,7 @@ import React, {
         if (token.token === "yes") {
             sessionStorage.setItem('token', JSON.stringify("yes"));
             navigate('/');
+            window.location.reload(false)
 
         } else if (token.token === "wrong") {
             setError("wrong pw");
