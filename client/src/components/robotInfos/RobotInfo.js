@@ -7,7 +7,7 @@ import Temperature from "./sensors/Temperature";
 import io from "socket.io-client";
 import Grow from "@mui/material/Grow";
 
-const ENDPOINT = "http://localhost:3002";
+const ENDPOINT = "http://10.0.0.94:3002";
 const socket = io.connect(ENDPOINT);
 
 const RobotInfo = () => {

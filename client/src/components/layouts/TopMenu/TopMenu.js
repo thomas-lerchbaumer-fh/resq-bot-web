@@ -36,6 +36,10 @@ const pages = [
 
 const loggedinpages = [
   {
+    name: "JoystickControl",
+    link: "/joystickcontrol",
+  },
+  {
     name: "MobileControl",
     link: "/mobilecontrol",
   },

@@ -30,12 +30,10 @@ const Home = () => {
       <Container maxWidth="lg">
         <Box sx={{ flexGrow: 1, mt: 5 }}>
           <Grid container  spacing={2}>
-            <Gamepad></Gamepad>
             <Gyro3d></Gyro3d>
           </Grid>
         </Box>
         <RobotInfo></RobotInfo>
-        <Gyro></Gyro>
       </Container>
     </Fragment>
   );
