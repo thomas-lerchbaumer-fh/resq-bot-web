@@ -14,7 +14,7 @@ import React, {
   import Paper from "@mui/material/Paper";
   import Grid from "@mui/material/Grid";
   import { API_SOCKET } from '../util/devConst';
-  import { Joystick } from 'react-joystick-component';
+  import MobileGamepad from "../components/mobileGamepad/MobileGamepad";
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -24,17 +24,9 @@ import React, {
     color: theme.palette.text.secondary,
   }));
 
-  function handleMove() {
-
-  }
-
-  function handleStop() {
-
-  }
 
 
   const MobileControl = () => {
-
 
   
     return (
@@ -44,8 +36,7 @@ import React, {
         <p>Mobile Control</p>
         </Paper>
         </Container>
-        <Joystick size={100} sticky={false} baseColor="white" stickColor="grey" move={handleMove} stop={handleStop}></Joystick>
-
+        <MobileGamepad></MobileGamepad>
       </Fragment>
     );
   };
