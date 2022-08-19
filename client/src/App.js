@@ -20,6 +20,7 @@ import TopMenu from "./components/layouts/TopMenu/TopMenu";
 import Home from "./pages/Home";
 import HowTo from "./pages/HowTo";
 import LoginPage from "./pages/LoginPage";
+import MobileControl from "./pages/MobileControl";
 
 //import sate below
 import RobotState from "./context/robotStatus/RobotState";
@@ -57,6 +58,7 @@ function App() {
             <Route path="/" element={<Home />}></Route>
             <Route path="/how-to" element={<HowTo />}></Route>
             <Route path="/loginpage" element={<LoginPage />}></Route>
+            <Route path="/mobilecontrol" element={<MobileControl />}></Route>
           </Routes>
         </BrowserRouter>
         </RobotState>

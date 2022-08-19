@@ -36,8 +36,8 @@ const pages = [
 
 const loggedinpages = [
   {
-    name: "Control",
-    link: "/control",
+    name: "MobileControl",
+    link: "/mobilecontrol",
   },
   {
     name: "Data History",
