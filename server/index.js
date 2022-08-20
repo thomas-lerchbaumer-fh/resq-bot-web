@@ -101,6 +101,13 @@ app.post('/receiveSensorData',function (req,res,next){
     res.send({ok:true});
 })
 
+app.post('/receiveControlInput',function (req,res,next){
+    const data = req.body
+
+    console.log(data);
+
+    res.send({ok:true});
+})
 
 app.get("/api", (req, res) => {
     res.json({ message: "Hello bois" });
