@@ -50,24 +50,28 @@ import React, {
 
     return (
       <Fragment>
-        <Container maxWidth="md">
-          <Grid container spacing={1}>
-            <Grid item xs={1}>
-              <Joystick size={100} sticky={false} baseColor="white" stickColor="grey" move={sendControls} stop={sendControls}></Joystick>
-            </Grid>
-            <Grid item xs={1}>
-            <Button variant="contained" style={{ fontSize: '40px'}}>&#10005;</Button>
-            </Grid>
-            <Grid item xs={1}>
-            <Button variant="contained" style={{ fontSize: '40px'}}>&#8408;</Button>
-            </Grid>
-            <Grid item xs={1}>
-            <Button variant="contained" style={{ fontSize: '40px'}}>&#9633;</Button>
-            </Grid>          
-            <Grid item xs={1}>
+       <Container maxWidth="lg">
+           <Grid 
+            direction="row"
+            alignItems="stretch"
+            justifyContent="center"
+            container spacing={3}>
+            <Grid item xs="auto">
             <Joystick size={100} sticky={false} baseColor="white" stickColor="grey" move={sendControls} stop={sendControls}></Joystick>
             </Grid>
-          </Grid>
+            <Grid item xs="auto">
+              <Button variant="contained" style={{ fontSize: '40px'}}>&#10005;</Button>
+            </Grid>
+            <Grid item xs="auto">
+            <Button variant="contained" style={{ fontSize: '40px'}}>&#8408;</Button>
+            </Grid>
+            <Grid item xs="auto">
+            <Button variant="contained" style={{ fontSize: '40px'}}>&#9633;</Button>
+            </Grid>          
+            <Grid item xs="auto">
+            <Joystick size={100} sticky={false} baseColor="white" stickColor="grey" move={sendControls} stop={sendControls}></Joystick>
+            </Grid>
+          </Grid> 
         </Container>
       </Fragment>
         );

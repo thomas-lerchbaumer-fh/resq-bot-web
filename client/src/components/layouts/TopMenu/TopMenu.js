@@ -33,7 +33,7 @@ const pages = [
     link: "/the-team",
   },
 ];
-
+/*
 const loggedinpages = [
   {
     name: "JoystickControl",
@@ -48,6 +48,7 @@ const loggedinpages = [
     link: "/history",
   },
 ];
+*/
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 
@@ -60,18 +61,18 @@ function getToken() {
 function logout() {
   sessionStorage.removeItem('token');
   fetch('http://10.0.0.94:3002/logout', {
-       method: 'POST',
-       headers: {
-           'Content-Type': 'application/json'
-       },
-   })
-   window.location.reload(false)
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  })
+  window.location.reload(false)
 }
 
 const TopMenu = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  
+
 
 
   const handleOpenNavMenu = (event) => {
@@ -103,7 +104,7 @@ const TopMenu = () => {
 
   const isLoggedIn = true;
   return (
-    
+
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -164,7 +165,12 @@ const TopMenu = () => {
                   </Link>
                 );
               })}
-              {getToken() === "yes" ? loggedinpages.map(function (page) {
+              <Link key="Control" to="/control">
+                <MenuItem key="Control" onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">Control</Typography>
+                </MenuItem>
+              </Link>
+              {/*            {getToken() === "yes" ? loggedinpages.map(function (page) {
                 return (
                   <Link key={page.link} to={page.link}>
                     <MenuItem key={page.name} onClick={handleCloseNavMenu}>
@@ -172,9 +178,9 @@ const TopMenu = () => {
                     </MenuItem>
                   </Link>
                 );
-              }) :""}
-             </Menu>
-           </Box>
+              }) :""} */}
+            </Menu>
+          </Box>
           <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
@@ -214,8 +220,50 @@ const TopMenu = () => {
                 </Link>
               );
             })}
-            
-            {getToken() === "yes" ? loggedinpages.map(function (page) {
+
+            {getToken() === "yes" ?
+              <Tooltip title="Available" placement="bottom">
+                <Link key="Control" to="/control">
+                  <Button
+                    key="Control"
+                    onClick={handleCloseNavMenu}
+                    sx={{
+                      my: 2,
+                      color: "white",
+                      display: "block",
+                      ":hover": {
+                        bgcolor: "#333", // theme.palette.primary.main
+                        color: "white",
+                      },
+                    }}
+                  >
+                    Control
+                  </Button>
+                </Link>
+              </Tooltip>
+            :
+            <Tooltip title="Locked Please Login" placement="bottom">
+              <Button
+                key="Control"
+                onClick={handleCloseNavMenu}
+                sx={{
+                  my: 2,
+                  color: "white",
+                  display: "block",
+                  ":hover": {
+                    bgcolor: "#333", // theme.palette.primary.main
+                    color: "white",
+                  },
+                }}
+              >
+                Control
+              </Button>
+          </Tooltip>
+            }
+
+
+
+            {/*      {getToken() === "yes" ? loggedinpages.map(function (page) {
               return (
                 <Link key={page.link} to={page.link}>
                   <Button
@@ -235,41 +283,42 @@ const TopMenu = () => {
                 </Link>
               );
             }) :""}
+             */}
           </Box>
-          
-          {getToken() === "yes" ?  <Button
-                    key="Logout"
-                    onClick={logout}
-                    sx={{
-                      my: 2,
-                      color: "white",
-                      display: "block",
-                      ":hover": {
-                        bgcolor: "#333", // theme.palette.primary.main
-                        color: "white",
-                      },
-                    }}
-                  >
-                    Logout
-                  </Button> : <Link key="/loginpage" to="/loginpage">
-    <Button
-      key="Login"
-      sx={{
-        my: 2,
-        color: "white",
-        display: "block",
-        ":hover": {
-          bgcolor: "#333", // theme.palette.primary.main
-          color: "white",
-        },
-      }}
-    >
-      Login
-    </Button>
-  </Link> }
 
-       
-          
+          {getToken() === "yes" ? <Button
+            key="Logout"
+            onClick={logout}
+            sx={{
+              my: 2,
+              color: "white",
+              display: "block",
+              ":hover": {
+                bgcolor: "#333", // theme.palette.primary.main
+                color: "white",
+              },
+            }}
+          >
+            Logout
+          </Button> : <Link key="/loginpage" to="/loginpage">
+            <Button
+              key="Login"
+              sx={{
+                my: 2,
+                color: "white",
+                display: "block",
+                ":hover": {
+                  bgcolor: "#333", // theme.palette.primary.main
+                  color: "white",
+                },
+              }}
+            >
+              Login
+            </Button>
+          </Link>}
+
+
+
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Get device information">
@@ -277,11 +326,11 @@ const TopMenu = () => {
                 aria-describedby={id}
                 variant="contained"
                 onClick={handleClick}
-                sx={{ p: 0 , color:"orange"}} 
+                sx={{ p: 0, color: "orange" }}
               >
-                <Avatar  style={{background:"white"}} color="#181818">
-               <SmartToyIcon color="secondary" />
-               </Avatar>
+                <Avatar style={{ background: "white" }} color="#181818">
+                  <SmartToyIcon color="secondary" />
+                </Avatar>
               </IconButton>
             </Tooltip>
             <Popover

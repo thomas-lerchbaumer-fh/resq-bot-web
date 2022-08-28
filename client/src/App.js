@@ -22,6 +22,7 @@ import HowTo from "./pages/HowTo";
 import LoginPage from "./pages/LoginPage";
 import MobileControl from "./pages/MobileControl";
 import JoystickControl from "./pages/JoystickControl";
+import Control from "./pages/Control";
 
 //import sate below
 import RobotState from "./context/robotStatus/RobotState";
@@ -61,6 +62,7 @@ function App() {
             <Route path="/loginpage" element={<LoginPage />}></Route>
             <Route path="/mobilecontrol" element={<MobileControl />}></Route>
             <Route path="/joystickcontrol" element={<JoystickControl />}></Route>
+            <Route path="/control" element={<Control />}></Route>
           </Routes>
         </BrowserRouter>
         </RobotState>
