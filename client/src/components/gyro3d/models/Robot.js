@@ -1,4 +1,12 @@
-import { useRef, useState, useLayoutEffect, useEffect} from "react";
+import {
+  useRef,
+  useState,
+  useLayoutEffect,
+  useEffect,
+  useContext,
+  Fragment,
+} from "react";
+import RobotContext from "../../../context/robotStatus/robotContext";
 import * as THREE from "three";
 import io from "socket.io-client";
 import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber";
@@ -12,14 +20,15 @@ import {
   ContactShadows,
   Lightformer,
   BakeShadows,
+  Html,
 } from "@react-three/drei";
 import { DDSLoader } from "three-stdlib";
 import Floor from "../enviroment/Floor";
 import { Physics } from "@react-three/cannon";
+import { CameraHelper } from "three";
 
 const ENDPOINT = "http://localhost:3002";
 const socket = io.connect(ENDPOINT);
-
 
 function Rover(props) {
   const { scene } = useGLTF("/Perseverance.glb");
@@ -36,19 +45,22 @@ function Rover(props) {
 }
 
 const Robot = () => {
-    const [rotationRobot, setRotation] = useState([0,0,0])
+  const [rotationRobot, setRotation] = useState([0, 0, 0]);
 
-    useEffect(() => {
-        socket.on("gyroData", (data) => {
-          const {x,y,z} = data[0];
-          setRotation([x,y,z])
-        });
-      }, [socket]);
+  const robotContext = useContext(RobotContext);
 
+  const { getConnectionStatus, connection } = robotContext;
+
+  useEffect(() => {
+    socket.on("gyroData", (data) => {
+      const { x, y, z } = data[0];
+      setRotation([x, y, z]);
+    });
+  }, [socket]);
 
   return (
     <div style={{ position: "relative", width: "100%", height: 280 }}>
-      <Canvas camera={{ fov: 45 }}>
+      <Canvas camera={{ position: [5, 2, 7], fov: 90 }}>
         <Sky sunPosition={[20, 20, 20]} />
         <OrbitControls makeDefault></OrbitControls>
         <color attach="background" args={["#151520"]} />
@@ -90,6 +102,25 @@ const Robot = () => {
         <group position={[0, 0, 0]}>
           <Rover position={[0, 0.6, 0]} scale={2} rotation={rotationRobot} />
         </group>
+
+        {connection ? (
+          <Fragment>
+          <Html scale={50} position={[5, 3, 2]}>
+            <div class="robot-connected">
+              Robot is connected
+            </div>
+          </Html>
+            <Html scale={50} position={[-20, 3, 2]}>
+            <div class="robot-connected">
+             <p> x: {rotationRobot[0]} </p>
+              <p>y: {rotationRobot[1]}</p>
+              <p>z: {rotationRobot[2]}</p>
+            </div>
+          </Html>
+          </Fragment>
+        ) : (
+          ""
+        )}
 
         <Environment resolution={512}>
           {/* Ceiling */}
