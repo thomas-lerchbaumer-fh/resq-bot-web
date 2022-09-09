@@ -39,13 +39,11 @@ const styles = {
 
 const Speed = (props) => {
     const {speed} = props
-
-
   return (
     <>
       <Grid
         item
-        xs={6}
+        xs={12}
         md={6}
         lg={4}
         sx={{ height: "100%" }}

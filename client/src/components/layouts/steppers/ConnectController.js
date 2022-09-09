@@ -12,6 +12,7 @@ import ConnectedImg from "../../../assets/tutorial/controller_connected.png";
 import { useGamepads } from "react-gamepads";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import Zoom from 'react-medium-image-zoom'
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -94,7 +95,7 @@ const ConnectController = () => {
                 {" "}
                 {parse(step.description)}
               </Typography>
-              {index === steps.length - 2 ? <img src={ConnectedImg}></img> : ""}
+              {index === steps.length - 2 ? <img width="100%" src={ConnectedImg}></img> : ""}
 
               <Box sx={{ mb: 2 }}>
                 <div>
