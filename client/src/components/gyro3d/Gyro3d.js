@@ -27,7 +27,6 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const Gyro3d = () => {
 
-
   return (
     <Fragment>
       <Grid
