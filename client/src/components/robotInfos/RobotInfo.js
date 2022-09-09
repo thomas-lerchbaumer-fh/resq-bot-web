@@ -6,8 +6,9 @@ import Speed from "./sensors/Speed";
 import Temperature from "./sensors/Temperature";
 import io from "socket.io-client";
 import Grow from "@mui/material/Grow";
+import Battery from "./sensors/Battery";
 
-const ENDPOINT = "http://10.0.0.94:3002";
+const ENDPOINT = "http://localhost:3002";
 const socket = io.connect(ENDPOINT);
 
 const RobotInfo = () => {
@@ -57,6 +58,7 @@ const RobotInfo = () => {
             <Grid container spacing={2}>
               <Speed speed={speed}></Speed>
               <Temperature temperature={temperature}></Temperature>
+              <Battery batteryLevel={batteryLevel }></Battery>
             </Grid>
           </Grow>
         </Box>
