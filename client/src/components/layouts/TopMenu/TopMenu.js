@@ -18,7 +18,7 @@ import RobotInfoPopover from "../../robotInfos/RobotInfoPopover";
 import { Routes, Route, Link } from "react-router-dom";
 import Popover from "@mui/material/Popover";
 import SmartToyIcon from '@mui/icons-material/SmartToy';
-
+import { API_SOCKET } from '../../util/devConst';
 const pages = [
   {
     name: "Home",
@@ -60,7 +60,7 @@ function getToken() {
 
 function logout() {
   sessionStorage.removeItem('token');
-  fetch('http://localhost:3002/logout', {
+  fetch(API_SOCKET+'/logout', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
