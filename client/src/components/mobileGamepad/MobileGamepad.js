@@ -18,6 +18,7 @@ import Tooltip from "@mui/material/Tooltip";
 import { Link } from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
 import InfoIcon from "@mui/icons-material/Info";
+import { API_ROBOT } from '../../util/devConst';
 
 function getToken() {
   const tokenString = sessionStorage.getItem("token");
@@ -41,7 +42,7 @@ const sendRightControl = (data) => {
 };
 
 const sendLsRs = (req) =>{
-  fetch("http://192.168.0.52:80/receiveControlInput", {
+  fetch(API_ROBOT + "/receiveControlInput", {
     // Enter your IP address here
     method: "POST",
     mode: "cors",

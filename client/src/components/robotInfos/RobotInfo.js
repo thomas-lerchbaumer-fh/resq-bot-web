@@ -7,8 +7,9 @@ import Temperature from "./sensors/Temperature";
 import io from "socket.io-client";
 import Grow from "@mui/material/Grow";
 import Battery from "./sensors/Battery";
+import { API_SOCKET } from '../../util/devConst';
 
-const ENDPOINT = "http://localhost:3002";
+const ENDPOINT = API_SOCKET;
 const socket = io.connect(ENDPOINT);
 
 const RobotInfo = () => {

@@ -13,6 +13,8 @@ import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import MuiAlert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
 import { Link } from "react-router-dom";
+import { API_ROBOT } from '../../util/devConst';
+
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -44,7 +46,7 @@ const sendControls = (button, data) => {
     "button": button,
       data
   }
-  fetch('http://192.168.0.52:80/receiveControlInput', {  // Enter your IP address here
+  fetch(API_ROBOT + '/receiveControlInput', {  // Enter your IP address here
   method: 'POST', 
   mode: 'cors', 
   headers: new Headers({'content-type': 'application/json',
