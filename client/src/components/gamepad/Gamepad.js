@@ -44,7 +44,7 @@ const sendControls = (button, data) => {
     "button": button,
       data
   }
-  fetch('http://localhost:80/receiveControlInput', {  // Enter your IP address here
+  fetch('http://192.168.0.52:80/receiveControlInput', {  // Enter your IP address here
   method: 'POST', 
   mode: 'cors', 
   headers: new Headers({'content-type': 'application/json',
@@ -108,7 +108,7 @@ const Gamepad = () => {
 
     //left shoulder bottom (l2)
     if (gamepads[0].buttons[6].pressed === true){
-      sendControls("r2",gamepads[0].buttons[6]);
+      sendControls("l2",gamepads[0].buttons[6]);
       console.log(gamepads[0].buttons[6]);
     }
      

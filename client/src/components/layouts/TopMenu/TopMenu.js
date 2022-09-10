@@ -60,7 +60,7 @@ function getToken() {
 
 function logout() {
   sessionStorage.removeItem('token');
-  fetch('http://10.0.0.94:3002/logout', {
+  fetch('http://localhost:3002/logout', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

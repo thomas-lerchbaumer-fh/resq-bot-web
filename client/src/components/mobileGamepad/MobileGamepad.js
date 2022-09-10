@@ -24,11 +24,24 @@ function getToken() {
   return JSON.parse(tokenString);
 }
 
-const sendControls = (data) => {
+const sendLeftControl = (data) => {
   const req = {
-    data,
-  };
-  fetch("http://localhost:3001/receiveControlInput", {
+    "button": "ls",
+    data
+  }
+  sendLsRs(req);
+};
+
+const sendRightControl = (data) => {
+  const req = {
+    "button": "rs",
+    data
+  }
+  sendLsRs(req);
+};
+
+const sendLsRs = (req) =>{
+  fetch("http://192.168.0.52:80/receiveControlInput", {
     // Enter your IP address here
     method: "POST",
     mode: "cors",
@@ -84,8 +97,8 @@ const MobileGamepad = () => {
                   sticky={false}
                   baseColor="white"
                   stickColor="grey"
-                  move={sendControls}
-                  stop={sendControls}
+                  move={sendLeftControl}
+                  stop={sendLeftControl}
                 ></Joystick>
               </Grid>
               <Grid item xs="auto">
@@ -109,8 +122,8 @@ const MobileGamepad = () => {
                   sticky={false}
                   baseColor="white"
                   stickColor="grey"
-                  move={sendControls}
-                  stop={sendControls}
+                  move={sendRightControl}
+                  stop={sendRightControl}
                 ></Joystick>
               </Grid>
             </Grid>
