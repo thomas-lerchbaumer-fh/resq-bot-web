@@ -46,7 +46,7 @@ const sendControls = (button, data) => {
     "button": button,
       data
   }
-  fetch(API_ROBOT + '/receiveControlInput', {  // Enter your IP address here
+  fetch("http://"+ API_ROBOT + ":80/receiveControlInput", {  // Enter your IP address here
   method: 'POST', 
   mode: 'cors', 
   headers: new Headers({'content-type': 'application/json',

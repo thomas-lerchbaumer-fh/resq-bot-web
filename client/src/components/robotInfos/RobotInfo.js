@@ -9,7 +9,7 @@ import Grow from "@mui/material/Grow";
 import Battery from "./sensors/Battery";
 import { API_SOCKET } from '../../util/devConst';
 
-const ENDPOINT = API_SOCKET;
+const ENDPOINT = "https://" + API_SOCKET + ":3002";
 const socket = io.connect(ENDPOINT);
 
 const RobotInfo = () => {

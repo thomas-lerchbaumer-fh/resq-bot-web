@@ -1,2 +1,2 @@
-export const API_ROBOT = 'http://10.0.0.94:80';
-export const API_SOCKET = 'https://10.0.0.94:3002';
+export const API_ROBOT = '10.0.0.94';
+export const API_SOCKET = '10.0.0.94';

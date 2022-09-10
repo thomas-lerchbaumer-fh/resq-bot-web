@@ -18,7 +18,7 @@ import React, {
 
 
   async function loginUser(credentials) {
-    return fetch(API_SOCKET+ "/login", {
+    return fetch("http://"+ API_SOCKET + ":3002/login", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

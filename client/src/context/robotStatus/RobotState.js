@@ -26,7 +26,7 @@ const RobotState = props => {
 
     const getConnectionStatus = async () => {
         try{
-            const res = await axios.get(API_ROBOT+"/status");
+            const res = await axios.get("http://"+ API_ROBOT + ":80/status");
             dispatch({
                 type: GET_ROBOT_CONNECTION,
                 payload: res.data

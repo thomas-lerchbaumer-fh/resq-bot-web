@@ -60,7 +60,7 @@ function getToken() {
 
 function logout() {
   sessionStorage.removeItem('token');
-  fetch(API_SOCKET+'/logout', {
+  fetch("https://" + API_SOCKET + ":3002/logout", {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

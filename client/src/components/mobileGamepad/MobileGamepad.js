@@ -42,7 +42,7 @@ const sendRightControl = (data) => {
 };
 
 const sendLsRs = (req) =>{
-  fetch(API_ROBOT + "/receiveControlInput", {
+  fetch("http://"+ API_ROBOT + ":80/receiveControlInput", {
     // Enter your IP address here
     method: "POST",
     mode: "cors",

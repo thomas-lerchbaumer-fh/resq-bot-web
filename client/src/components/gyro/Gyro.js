@@ -8,7 +8,7 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import { API_ROBOT } from '../../util/devConst';
+import { API_SOCKET  } from '../../util/devConst';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -27,7 +27,7 @@ const sendLeftMotorControl = (event, newValue) => {
 };
 
 function getGyro() {
-  fetch(API_ROBOT +"/api")
+  fetch("https://" + API_SOCKET + ":3002/api")
     .then((res) => res.json())
     .then(
       (result) => {
