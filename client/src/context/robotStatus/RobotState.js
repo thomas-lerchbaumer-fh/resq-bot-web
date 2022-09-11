@@ -42,7 +42,7 @@ const RobotState = props => {
 
     const getBatteryLevel = async () =>{
         try{
-            const res = await axios.get(API_ROBOT+"/bat")
+            const res = await axios.get("http://"+ API_ROBOT+"/bat")
             dispatch({
                 type: GET_BATTERY_LEVEL,
                 payload: res.data.Battery
@@ -55,7 +55,7 @@ const RobotState = props => {
 
     const getTemp = async()=>{
         try{
-            const res = await axios.get(API_ROBOT+"/temp")
+            const res = await axios.get("http://"+ API_ROBOT+"/temp")
          
             dispatch({
                 type: GET_TEMP,
@@ -68,7 +68,7 @@ const RobotState = props => {
 
     const getSpeed = async() =>{
         try{
-            const res = await axios.get(API_ROBOT+"/speed")
+            const res = await axios.get("http://"+ API_ROBOT+"/speed")
 
             dispatch({
                 type: GET_SPEED,

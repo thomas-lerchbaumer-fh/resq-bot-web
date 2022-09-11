@@ -4,6 +4,7 @@ import React, {
   Fragment,
   useReducer,
   useState,
+  useCallback
 } from "react";
 import { Container } from "@mui/material";
 import { styled } from "@mui/material/styles";
@@ -41,6 +42,13 @@ const sendRightControl = (data) => {
   sendLsRs(req);
 };
 
+function sendButtonsControl(button) {
+  const req = {
+    "button": button,
+  }
+  sendLsRs(req);
+};
+
 const sendLsRs = (req) =>{
   fetch("http://"+ API_ROBOT + ":80/receiveControlInput", {
     // Enter your IP address here
@@ -67,6 +75,7 @@ const MobileGamepad = () => {
     color: theme.palette.text.secondary,
   }));
 
+
   if (getToken() === "yes") {
     return (
       <Grid item xs={12} lg={6} justifyContent="center" alignContent="center">
@@ -87,11 +96,18 @@ const MobileGamepad = () => {
           <Container maxWidth="lg">
             <Grid
               direction="row"
-              alignItems="stretch"
+              alignItems="center"
               justifyContent="center"
               container
               spacing={1}
             >
+               <Grid item xs="auto">
+                <Button variant="contained" 
+                style={{ fontSize: "40px" }} 
+                onClick={() => sendButtonsControl('X')} >
+                L2
+                </Button>
+              </Grid>
               <Grid item xs="auto">
                 <Joystick
                   size={100}
@@ -103,17 +119,17 @@ const MobileGamepad = () => {
                 ></Joystick>
               </Grid>
               <Grid item xs="auto">
-                <Button variant="contained" style={{ fontSize: "40px" }}>
+                <Button variant="contained" style={{ fontSize: "40px" }} onClick={() => sendButtonsControl('X')}>
                   &#10005;
                 </Button>
               </Grid>
               <Grid item xs="auto">
-                <Button variant="contained" style={{ fontSize: "40px" }}>
+                <Button variant="contained" style={{ fontSize: "40px" }} onClick={() => sendButtonsControl('Kreis')}>
                   &#8408;
                 </Button>
               </Grid>
               <Grid item xs="auto">
-                <Button variant="contained" style={{ fontSize: "40px" }}>
+                <Button variant="contained" style={{ fontSize: "40px" }} onClick={() => sendButtonsControl('Viereck')}>
                   &#9633;
                 </Button>
               </Grid>
@@ -126,6 +142,11 @@ const MobileGamepad = () => {
                   move={sendRightControl}
                   stop={sendRightControl}
                 ></Joystick>
+              </Grid>
+              <Grid item xs="auto">
+                <Button variant="contained" style={{ fontSize: "40px" }} onClick={() => sendButtonsControl('R2')}>
+                  R2
+                </Button>
               </Grid>
             </Grid>
           </Container>
