@@ -96,7 +96,7 @@ const MobileGamepad = () => {
           <Container maxWidth="lg">
             <Grid
               direction="row"
-              alignItems="stretch"
+              alignItems="center"
               justifyContent="center"
               container
               spacing={1}

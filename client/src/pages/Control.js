@@ -56,10 +56,19 @@ const Control = () => {
                 <Fragment>
                     <Container maxWidth="lg">
                         <Paper elevation={1} sx={{ minWidth: "100%", minHeight: "10%", padding: "5px", margin: "20px" }}>
-                            <div>
+                            <Grid
+                             direction="row"
+                             alignItems="center"
+                             justifyContent="center"
+                             container
+                             spacing={1}>
+                                <Grid item xs="auto">
                                 <p>Toggle Between Controller and mobileGamepad</p>
+                                </Grid>
+                                <Grid item xs="auto">
                                 <ToggleSlider onToggle={state => setActive(state)} />
-                            </div>
+                                </Grid>
+                            </Grid>
                         </Paper>
 
                     
