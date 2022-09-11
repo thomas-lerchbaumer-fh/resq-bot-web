@@ -18,6 +18,7 @@
     "html-react-parser": "^3.0.1",
     "react": "^18.0.0",
     "react-battery-gauge": "^1.0.3",
+    "react-click-n-hold": "^1.0.7",
     "react-d3-speedometer": "^2.0.0-rc.3",
     "react-dom": "^18.0.0",
     "react-gamepads": "^1.0.0",
@@ -27,9 +28,11 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",
     "react-thermometer-component": "^1.0.1",
+    "react-toggle-slider": "^0.4.0",
     "resq": "file:..",
     "socket.io-client": "^4.5.1",
     "three": "^0.143.0",
+    "use-long-press": "^2.0.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
