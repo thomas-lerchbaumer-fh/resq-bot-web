@@ -27,7 +27,7 @@ const sendLeftMotorControl = (event, newValue) => {
 };
 
 function getGyro() {
-  fetch("https://" + API_SOCKET + ":3002/api")
+  fetch("http://" + API_SOCKET + ":3002/api")
     .then((res) => res.json())
     .then(
       (result) => {

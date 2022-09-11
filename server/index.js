@@ -29,7 +29,7 @@ const io = new Server(server,{
     }
 })
 
-const mongodburi = "mongodb+srv://wahlfachprojektuser:[PW]@cluster0.awuaqj3.mongodb.net/?retryWrites=true&w=majority"
+const mongodburi = "mongodb+srv://wfpthomas:test@cluster0.awuaqj3.mongodb.net/?retryWrites=true&w=majority"
 
 
 
