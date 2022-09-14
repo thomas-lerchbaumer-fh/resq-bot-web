@@ -17,7 +17,9 @@ Navigate to the project root folder and execute the following lines in the termi
 
 
 npm i
+
 cd client
+
 npm i
 
 this will install the react node_models/libs etc. on your local machine
