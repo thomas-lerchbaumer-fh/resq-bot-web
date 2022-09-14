@@ -13,7 +13,12 @@ Team: Anas, Markus, Thomas, Vladimir
 be sure to be in the root folder and got node installed
 
 
-please execute the following lines in the terminal:
+Navigate to the project root folder and execute the following lines in the terminal:
+
+
+npm i
+cd client
+npm i
 
 this will install the react node_models/libs etc. on your local machine
 npm run clientinstall
