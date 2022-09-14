@@ -104,7 +104,7 @@ const MobileGamepad = () => {
                <Grid item xs="auto">
                 <Button variant="contained" 
                 style={{ fontSize: "40px" }} 
-                onClick={() => sendButtonsControl('X')} >
+                onClick={() => sendButtonsControl('l2')} >
                 L2
                 </Button>
               </Grid>
@@ -144,7 +144,7 @@ const MobileGamepad = () => {
                 ></Joystick>
               </Grid>
               <Grid item xs="auto">
-                <Button variant="contained" style={{ fontSize: "40px" }} onClick={() => sendButtonsControl('R2')}>
+                <Button variant="contained" style={{ fontSize: "40px" }} onClick={() => sendButtonsControl('r2')}>
                   R2
                 </Button>
               </Grid>

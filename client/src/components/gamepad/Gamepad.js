@@ -113,7 +113,27 @@ const Gamepad = () => {
       sendControls("l2",gamepads[0].buttons[6]);
       console.log(gamepads[0].buttons[6]);
     }
-     
+
+    //square button
+    if (gamepads[0].buttons[0].pressed === true){
+      sendControls("X",gamepads[0].buttons[0]);
+      console.log(gamepads[0].buttons[0]);
+    }
+    //X button
+    if (gamepads[0].buttons[2].pressed === true){
+      sendControls("Viereck",gamepads[0].buttons[2]);
+      console.log(gamepads[0].buttons[2]);
+    }
+    //triangle button
+    if (gamepads[0].buttons[3].pressed === true){
+      sendControls("Dreieck",gamepads[0].buttons[3]);
+      console.log(gamepads[0].buttons[3]);
+    }
+    // O button
+    if (gamepads[0].buttons[1].pressed === true){
+      sendControls("Kreis",gamepads[0].buttons[1]);
+      console.log(gamepads[0].buttons[1]);
+    }
   }
 
   if (gamepads.length > 0) {
