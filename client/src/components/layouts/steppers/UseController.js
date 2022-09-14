@@ -20,31 +20,26 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 const steps = [
     {
-        label: "Configure your Project",
-        description: `find the file ./client/src/util/devConst.js and adapt the variables for your IP addresses <br>
-                      API_ROBOT is referring to the IP of the Raspberry Pi and API_SOCKET is the IP of your Server.
+        label: "Move The Robot",
+        description: `To Move the Robot use: <br>
+                      L2 to activate the left sprockets to move forward and R2 to activate the right ones. <br>
+                      Use square to move the left sprockets backwards and triangle to move the right ones. 
         `,
     },
     {
-        label: "Enable the USART on your Raspberry Pi",
-        description: `The USART on the Raspberry Pi can be enbled by entering in the cmd<br>
-                      <p>sudo raspi-config</p>
-                      select interface options / serial port and disable the login shell but enable the serial interface. <br>
+        label: "Move the Camera",
+        description: `The Camera can be moved by using the left joystick
         `,
     },
     {
-        label: "Connect the USART ports with the end device",
-        description: `Per default the USART ports are located at pins 8 and 10 which are referred to as GPIO PIN 14 and 15<br> 
-                      make sure to also connect the ground of your end device with the ground of the Raspberry Pi (PIN 6).
+        label: "Configure your own functionalities",
+        description: `We have left the right joystick as well as the circle and X Button without any functionality. <br>
+                      you can use them adaptive to whatever functionality you want to add.
       `,
-    },
-    {
-        label: "Congratulations",
-        description: `you have now finished the setup and commands you send via the controller will be forwarded to rhe Raspberry Pi. `,
-    },
+    }
 ];
 
-const SetupProject = () => {
+const UseController = () => {
     const [activeStep, setActiveStep] = React.useState(0);
 
     const [gamepads, setGamepads] = useState([]);
@@ -95,7 +90,6 @@ const SetupProject = () => {
                                 {" "}
                                 {parse(step.description)}
                             </Typography>
-                            {index === steps.length - 2 ? <img width="60%" src={RaspiPins}></img> : ""}
 
                             <Box sx={{ mb: 2 }}>
                                 <div>
@@ -141,4 +135,4 @@ const SetupProject = () => {
     );
 };
 
-export default SetupProject;
+export default UseController;

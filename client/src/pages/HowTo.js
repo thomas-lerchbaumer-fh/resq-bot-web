@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ConnectController from "../components/layouts/steppers/ConnectController";
 import SetupProject from "../components/layouts/steppers/SetupProject"
+import UseController from "../components/layouts/steppers/UseController"
 import { Center } from "@react-three/drei";
 
 const HowTo = () => {
@@ -59,6 +60,26 @@ const HowTo = () => {
                 sx={{ display: "flex", justifyContent: "center" }}
               >
                 <SetupProject></SetupProject>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion
+                sx={{ width: "100%" }}
+                expanded={expanded === "panel3"}
+                onChange={handleChange("panel3")}
+            >
+              <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel1bh-content"
+                  id="panel1bh-header"
+              >
+                <Typography sx={{ width: "100%", flexShrink: 0 }}>
+                  How to use the controller
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails
+                  sx={{ display: "flex", justifyContent: "center" }}
+              >
+                <UseController></UseController>
               </AccordionDetails>
             </Accordion>
           </Paper>
