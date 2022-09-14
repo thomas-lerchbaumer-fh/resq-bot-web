@@ -44,15 +44,19 @@ const sendControls = (button, data) => {
 
   const req = {
     "button": button,
-      data
+    data
   }
-  fetch("http://"+ API_ROBOT + ":80/receiveControlInput", {  // Enter your IP address here
-  method: 'POST', 
-  mode: 'cors', 
-  headers: new Headers({'content-type': 'application/json',
-  'Accept':'application/json'}),
-  body: JSON.stringify(req) // body data type must match "Content-Type" header
-})
+  if (getToken() === "yes") {
+    fetch("http://" + API_ROBOT + ":80/receiveControlInput", {  // Enter your IP address here
+      method: 'POST',
+      mode: 'cors',
+      headers: new Headers({
+        'content-type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      body: JSON.stringify(req) // body data type must match "Content-Type" header
+    })
+  }
 }
 
 const Gamepad = () => {
