@@ -6,6 +6,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ConnectController from "../components/layouts/steppers/ConnectController";
+import SetupProject from "../components/layouts/steppers/SetupProject"
 import { Center } from "@react-three/drei";
 
 const HowTo = () => {
@@ -51,13 +52,13 @@ const HowTo = () => {
                 id="panel1bh-header"
               >
                 <Typography sx={{ width: "100%", flexShrink: 0 }}>
-                 How to do stuff
+                 How to use this project
                 </Typography>
               </AccordionSummary>
               <AccordionDetails
                 sx={{ display: "flex", justifyContent: "center" }}
               >
-                <ConnectController></ConnectController>
+                <SetupProject></SetupProject>
               </AccordionDetails>
             </Accordion>
           </Paper>
