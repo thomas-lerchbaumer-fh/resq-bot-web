@@ -75,7 +75,7 @@ import React, {
             <TextField id="standard-basic" label="Username" variant="standard" onChange={e => setUserName(e.target.value)}/>
             </Box>
             <Box   justifyContent="center" alignItems="center" padding="10px">
-            <TextField id="standard-basic" label="Password" variant="standard" onChange={e => setPassword(e.target.value)}/>
+            <TextField id="standard-basic" label="Password" variant="standard" type="password" onChange={e => setPassword(e.target.value)}/>
             </Box>
             <Box   justifyContent="center" alignItems="center">
             <Button type="submit" variant="outlined" >Login</Button>
